@@ -1,0 +1,947 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>lily-hidden | LilySpeech</title>
+
+
+<style>
+  
+    html,body {height:100%;}
+
+
+.wronglicence {    
+   width: 100%;  
+      height: 100%;  
+      line-height: 25px;  
+      text-align: center;  
+      padding: 25px 25px;  
+      margin:auto;  
+    }
+
+::selection {  
+    background: transparent; /* WebKit/Blink Browsers */
+}
+
+* {  
+      font-family: Verdana, Arial, sans-serif;  
+    }  
+      
+    .right {  
+      float: right;  
+    }  
+    .sidebyside {  
+      display: inline-block;  
+      width: 100%;  
+      min-height: 40px;  
+      text-align: left;  
+      vertical-align: top;  
+    }  
+    #headline {  
+      font-size: 40px;  
+      font-weight: 300;  
+    }  
+      
+    #start_button {  
+      border: 0 !important;  
+      background-color:transparent;  
+      padding: 10px;  
+       outline: none;  
+    }
+  
+      #start_button:active {  
+      border: 0 !important;  
+       outline: none;  
+      
+    }
+
+a img:hover {  
+   opacity: 0.7;  
+      filter: alpha(opacity=70); /* For IE8 and earlier */
+}
+
+
+.left {  
+      text-align: left;  
+      float: left;
+}
+
+.hideall {
+  position: fixed;
+  width:100%;
+  height: 100%;
+  background-color:#fff;
+  z-index:9999999;
+}
+
+.hideall2 {
+  position: fixed;
+  width:100%;
+  height: 100%;
+  background-color:#fff;
+  z-index:99999999;
+}
+
+
+
+.links,.links a,.links a:hover { font-size:12px;margin-bottom:4px;height:38px;}
+
+
+  
+  
+    .coggs {  
+      color:#4c4c4c;  
+    }  
+     
+    .final {  
+      color: black;  
+      padding-right: 3px;   
+    }  
+    .interim {  
+      color: gray;  
+    }  
+    .info {  
+      font-size: 14px;  
+      text-align: center;  
+      color: #777;  
+      display: none;  
+    }
+
+
+  
+    #info {  
+      font-size: 12px;  
+      text-align: center;  
+      color: #777;  
+      visibility: hidden;  
+      position: absolute;  
+      width:100%;  
+          padding: 10px;  
+      }
+  
+    #results {
+font-size: 12px;  
+    //  font-weight: bold;  
+    
+   padding: 10px;  
+    margin-bottom:5px;  
+      text-align: left;  
+      height: -127px;  
+       overflow: auto;  
+    }
+  
+    .links,.links a,.links a:hover { color:#9b9696;}
+
+
+
+
+
+
+</style>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+
+<script>
+  
+   $(document).ready(function() {  
+      $(".body").on("contextmenu",function(e){  
+         return false;  
+      }); 
+}); 
+
+
+
+$(window).resize(function(){  
+      window.resizeTo(,);
+});
+
+</script>
+
+<script type="text/javascript">
+  function clearBox(elementID)
+{  
+      document.getElementById(elementID).innerHTML = "";
+}
+
+
+
+
+  
+    function copytitle() {
+window.doctitle = document.title;  
+      document.title = window.doctitle + " - Text Copied";  
+        
+     setTimeout(copytitleback, 1000);  
+      
+}
+
+  
+    function copytitleback()
+{  
+      document.title = window.doctitle;
+}
+
+
+
+
+  
+    function swaptitle($title)
+{  
+     // document.title = $title;
+}
+
+
+
+
+</script>
+
+
+<link rel="icon" href="https://lilyspeech.com/wp-content/plugins/LilySpeech/LilySpeechDesktop.ico" type="image/x-icon">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+<script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101004244);</script>
+<script async="" src="//static.getclicky.com/js"></script>
+</head>
+
+
+
+
+
+<body onload="window.resizeTo(,)" class="body">
+
+<!--
+<div id="hideall2" class="hideall2" >
+<div id="hideall" class="hideall" style="display:none;">
+
+<center><img style="margin-top:20%;" src="https://lilyspeech.com/wp-content/uploads/2020/03/logo.png"></center>
+
+</div>
+</div>
+-->
+
+
+
+<div id="info" style="visibility: visible;">  
+      <p id="info_speak_now" style="display: none;">Speak now.</p>  
+      <p id="info_no_speech" style="display: none;">No speech was detected. You may need to adjust your microphone settings.</p>  
+      <p id="info_no_microphone" style="display: none;"> No microphone was found. Ensure that a microphone is installed and that microphone settings are configured correctly.</p>  
+    <p id="info_allow" style="display: none;">Click the "Allow" button above to enable your microphone.</p>  
+    <p id="info_denied" style="display: none;">Permission to use microphone was denied. It may be in use by another application.</p>  
+    <p id="info_blocked" style="display: none;">Permission to use microphone is blocked. To change, go to chrome://settings/contentExceptions#media-stream</p>  
+    <p id="info_upgrade" style="display: none;">Web Speech API is not supported by this browser. Upgrade to <a href="//www.google.com/chrome">Chrome</a> version 25 or later.</p>
+</div>
+
+
+<div class="right">  
+    <button id="start_button" onclick="startButton(event);" style="display: inline-block;">  
+      <img id="start_img" src="https://lilyspeech.com/wp-content/plugins/LilySpeech/1off.gif" alt="Start"></button>
+
+
+
+</div>
+<div id="results">  
+    <span id="final_span" class="final"></span>  
+    <span id="interim_span" class="interim"></span>  
+    <p>
+</p></div>
+
+<div class="col-xs-12 text-center links" style="border-bottom: 1px solid #ddd;padding:10px 0;">
+
+
+  
+  </div>
+
+<div class="center">  
+    <div class="sidebyside" style="text-align:right; padding-right:6px; padding-top:2px;">  
+      <a class="btn left coggs" target="_blank" href="https://lilyspeech.com/support/"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+
+
+
+
+
+   <a id="start" class="btn btn-default" onclick="startLily(event);"><i class="fa fa-play" aria-hidden="true"></i> Start</a>  
+
+   <a id="stop" class="btn btn-default" onclick="stopLily(event);"><i class="fa fa-stop" aria-hidden="true"></i> Stop</a>  
+
+
+    <a id="stopnclear" class="btn btn-default" onclick="stopandclear();"><i class="fa fa-stop" aria-hidden="true"></i> Stop &amp; Clear</a>  
+  
+    <a id="clear" class="btn btn-default" onclick="clearfunction();"><i class="fa fa-trash" aria-hidden="true"></i> Clear</a>  
+    
+<a class="btn btn-default" data-clipboard-action="copy" data-clipboard-target="div#results" onclick="copytitle();"><i class="fa fa-files-o" aria-hidden="true"></i> Copy</a>  
+
+<a class="btn btn-default" data-clipboard-action="copy" data-clipboard-target="div#results" onclick="self.close()"><i class="fa fa-times-circle" aria-hidden="true"></i> Copy &amp; Close</a>
+
+
+
+
+
+<!--  
+   <button class="btn" data-clipboard-action="copy" data-clipboard-target="div#results" class="btn btn-success">Copy</button>
+<button onclick="clearBox('final_span')" class="btn btn-danger">Clear</button>
+-->
+
+
+
+  
+      <!-- 2. Include library -->  
+      <script src="https://lilyspeech.com/wp-content/plugins/LilySpeech//clipboard.min.js"></script>
+  
+      <!-- 3. Instantiate clipboard -->  
+      <script>  
+      var clipboard = new Clipboard('.btn');
+  
+      clipboard.on('success', function(e) {  
+          console.log(e);  
+      });
+  
+      clipboard.on('error', function(e) {  
+          console.log(e);  
+      });
+      </script>
+
+  
+    </div>
+
+
+  
+    <div id="div_language" style="display:none;">  
+      <select id="select_language" onchange="updateCountry()"><option value="0">Afrikaans</option><option value="1">Bahasa Indonesia</option><option value="2">Bahasa Melayu</option><option value="3">Català</option><option value="4">Čeština</option><option value="5">Deutsch</option><option value="6">English</option><option value="7">Español</option><option value="8">Euskara</option><option value="9">Français</option><option value="10">Galego</option><option value="11">Hrvatski</option><option value="12">IsiZulu</option><option value="13">Íslenska</option><option value="14">Italiano</option><option value="15">Magyar</option><option value="16">Nederlands</option><option value="17">Norsk bokmål</option><option value="18">Polski</option><option value="19">Português</option><option value="20">Română</option><option value="21">Slovenčina</option><option value="22">Suomi</option><option value="23">Svenska</option><option value="24">Türkçe</option><option value="25">български</option><option value="26">Pусский</option><option value="27">Српски</option><option value="28">한국어</option><option value="29">中文</option><option value="30">日本語</option><option value="31">Lingua latīna</option></select>  
+      &nbsp;&nbsp;  
+      <select id="select_dialect" style="visibility: visible;"><option value="en-AU">Australia</option><option value="en-CA">Canada</option><option value="en-IN">India</option><option value="en-NZ">New Zealand</option><option value="en-ZA">South Africa</option><option value="en-GB">United Kingdom</option><option value="en-US">United States</option></select>  
+    </div>
+</div>
+<script>
+var langs =
+[['Afrikaans',       ['af-ZA']],  
+   ['Bahasa Indonesia',['id-ID']],  
+   ['Bahasa Melayu',   ['ms-MY']],  
+   ['Català',          ['ca-ES']],  
+   ['Čeština',         ['cs-CZ']],  
+   ['Deutsch',         ['de-DE']],  
+   ['English',         ['en-AU', 'Australia'],  
+                       ['en-CA', 'Canada'],  
+                       ['en-IN', 'India'],  
+                       ['en-NZ', 'New Zealand'],  
+                       ['en-ZA', 'South Africa'],  
+                       ['en-GB', 'United Kingdom'],  
+                       ['en-US', 'United States']],  
+   ['Español',         ['es-AR', 'Argentina'],  
+                       ['es-BO', 'Bolivia'],  
+                       ['es-CL', 'Chile'],  
+                       ['es-CO', 'Colombia'],  
+                       ['es-CR', 'Costa Rica'],  
+                       ['es-EC', 'Ecuador'],  
+                       ['es-SV', 'El Salvador'],  
+                       ['es-ES', 'España'],  
+                       ['es-US', 'Estados Unidos'],  
+                       ['es-GT', 'Guatemala'],  
+                       ['es-HN', 'Honduras'],  
+                       ['es-MX', 'México'],  
+                       ['es-NI', 'Nicaragua'],  
+                       ['es-PA', 'Panamá'],  
+                       ['es-PY', 'Paraguay'],  
+                       ['es-PE', 'Perú'],  
+                       ['es-PR', 'Puerto Rico'],  
+                       ['es-DO', 'República Dominicana'],  
+                       ['es-UY', 'Uruguay'],  
+                       ['es-VE', 'Venezuela']],  
+   ['Euskara',         ['eu-ES']],  
+   ['Français',        ['fr-FR']],  
+   ['Galego',          ['gl-ES']],  
+   ['Hrvatski',        ['hr_HR']],  
+   ['IsiZulu',         ['zu-ZA']],  
+   ['Íslenska',        ['is-IS']],  
+   ['Italiano',        ['it-IT', 'Italia'],  
+                       ['it-CH', 'Svizzera']],  
+   ['Magyar',          ['hu-HU']],  
+   ['Nederlands',      ['nl-NL']],  
+   ['Norsk bokmål',    ['nb-NO']],  
+   ['Polski',          ['pl-PL']],  
+   ['Português',       ['pt-BR', 'Brasil'],  
+                       ['pt-PT', 'Portugal']],  
+   ['Română',          ['ro-RO']],  
+   ['Slovenčina',      ['sk-SK']],  
+   ['Suomi',           ['fi-FI']],  
+   ['Svenska',         ['sv-SE']],  
+   ['Türkçe',          ['tr-TR']],  
+   ['български',       ['bg-BG']],  
+   ['Pусский',         ['ru-RU']],  
+   ['Српски',          ['sr-RS']],  
+   ['한국어',            ['ko-KR']],  
+   ['中文',             ['cmn-Hans-CN', '普通话 (中国大陆)'],  
+                       ['cmn-Hans-HK', '普通话 (香港)'],  
+                       ['cmn-Hant-TW', '中文 (台灣)'],  
+                       ['yue-Hant-HK', '粵語 (香港)']],  
+   ['日本語',           ['ja-JP']],  
+   ['Lingua latīna',   ['la']]];
+
+for (var i = 0; i < langs.length; i++) {  
+    select_language.options[i] = new Option(langs[i][0], i);
+}
+select_language.selectedIndex = 6
+  updateCountry();
+
+  select_dialect.selectedIndex = 6
+showInfo('info_start');
+
+function updateCountry() {  
+    for (var i = select_dialect.options.length - 1; i >= 0; i--) {  
+      select_dialect.remove(i);  
+    }  
+    var list = langs[select_language.selectedIndex];  
+    for (var i = 1; i < list.length; i++) {  
+      select_dialect.options.add(new Option(list[i][1], list[i][0]));  
+    }  
+    select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
+}
+
+var create_email = false;
+var final_transcript = '';
+var recognizing = false;
+var ignore_onend;
+var start_timestamp;
+if (!('webkitSpeechRecognition' in window)) {  
+    upgrade();
+} else {  
+    start_button.style.display = 'inline-block';  
+    var recognition = new webkitSpeechRecognition();  
+    recognition.continuous = true;  
+    recognition.interimResults = true;
+  
+    recognition.onstart = function() {  
+      recognizing = true;  
+   showInfo('');  
+      start_img.src = 'https://lilyspeech.com/wp-content/plugins/LilySpeech/1on.gif';  
+    };
+  
+    recognition.onerror = function(event) {  
+      if (event.error == 'no-speech') {  
+          window.recordingenabled = true;
+    //    start_img.src = 'https://lilyspeech.com/wp-content/plugins/LilySpeech/1off.gif';  
+     //   showInfo('info_no_speech');  
+      //  ignore_onend = true;  
+       //   swaptitle('LilySpeech Dictation is Off');  
+
+      }  
+      if (event.error == 'audio-capture') {  
+        start_img.src = 'https://lilyspeech.com/wp-content/plugins/LilySpeech/1off.gif';  
+        showInfo('info_no_microphone');  
+        ignore_onend = true;  
+          swaptitle('LilySpeech Dictation is Off');  
+          window.recordingenabled = false;
+      }  
+      if (event.error == 'not-allowed') {  
+        if (event.timeStamp - start_timestamp < 100) {  
+          showInfo('info_blocked');  
+            swaptitle('LilySpeech Dictation is Off');  
+            window.recordingenabled = false;
+        } else {  
+          showInfo('info_denied');  
+            swaptitle('LilySpeech Dictation is Off');  
+            window.recordingenabled = false;
+        }  
+        ignore_onend = true;  
+        window.recordingenabled = false;
+      }  
+    };
+  
+
+recognition.onend = function() {  
+    
+if (window.recordingenabled == true) {
+    recognition.start();
+  
+} else {
+    window.recordingenabled == false;
+
+
+      recognizing = false;  
+      if (ignore_onend) {  
+        return;  
+      }  
+      start_img.src = 'https://lilyspeech.com/wp-content/plugins/LilySpeech/1off.gif';  
+      if (!final_transcript) {  
+        showInfo('info_start');  
+        return;  
+      }  
+      showInfo('');  
+      if (window.getSelection) {  
+        window.getSelection().removeAllRanges();  
+        var range = document.createRange();  
+        range.selectNode(document.getElementById('final_span'));  
+        window.getSelection().addRange(range);  
+      }  
+
+}
+
+
+    };
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    recognition.onresult = function(event) {  
+      var interim_transcript = '';  
+      for (var i = event.resultIndex; i < event.results.length; ++i) {  
+        if (event.results[i].isFinal) {  
+          final_transcript += event.results[i][0].transcript + ' ';  
+        } else {  
+          interim_transcript += event.results[i][0].transcript;  
+        }  
+      }
+
+
+  
+   interim_transcript = capitalize(interim_transcript);  
+      interim_transcript = replacments(interim_transcript);  
+      interim_transcript = replacments(interim_transcript);  
+      interim_transcript = replacments(interim_transcript);  
+    interim_transcript = replacments(interim_transcript);  
+      interim_transcript = replacments(interim_transcript);  
+      interim_transcript = replacments(interim_transcript);  
+    
+
+
+  
+      final_transcript = capitalize(final_transcript);  
+      final_transcript = replacments(final_transcript);  
+      final_transcript = replacments(final_transcript);  
+      final_transcript = replacments(final_transcript);
+  final_transcript = replacments(final_transcript);  
+      final_transcript = replacments(final_transcript);  
+      final_transcript = replacments(final_transcript);  
+      final_span.innerHTML = linebreak(final_transcript);
+
+  
+      interim_span.innerHTML = linebreak(interim_transcript);  
+      if (final_transcript || interim_transcript) {  
+        showButtons('inline-block');  
+      }  
+    };
+}
+
+function upgrade() {  
+    start_button.style.visibility = 'hidden';  
+   // showInfo('info_upgrade');
+}
+
+var two_line = /\n\n/g;
+var one_line = /\n/g;
+
+
+function linebreak(s) {  
+    return s.replace(two_line, '<br><br>').replace(one_line, '<br>');
+}
+
+
+  
+function replacments(s) {
+thenewtext=s.replace("open quote ", "\"");
+
+thenewtext=thenewtext.replace("a paragraph ", "<br><br> ");
+thenewtext=thenewtext.replace("Uline  ", "<br><br> ");
+thenewtext=thenewtext.replace("new paragraph ", "<br><br> ");
+thenewtext=thenewtext.replace("new line ", "<br> ");
+thenewtext=thenewtext.replace("new lines ", "<br> ");
+thenewtext=thenewtext.replace("New line ", "<br> ");
+thenewtext=thenewtext.replace("New lines ", "<br> ");
+thenewtext=thenewtext.replace("you paragraph ", "<br><br> ");
+thenewtext=thenewtext.replace("You paragraph ", "<br><br> ");
+thenewtext=thenewtext.replace("You line ", "<br> ");
+thenewtext=thenewtext.replace("you line ", "<br> ");
+thenewtext=thenewtext.replace("and paragraph ", "<br><br> ");
+thenewtext=thenewtext.replace("New Line ", "<br> ");
+thenewtext=thenewtext.replace("Your paragraph ", "<br><br> ");
+thenewtext=thenewtext.replace("In paragraph ", "<br/><br/> ");
+thenewtext=thenewtext.replace("in paragraph ", "<br/><br/> ");
+thenewtext=thenewtext.replace("He paragraph ", "<br/><br/> ");
+thenewtext=thenewtext.replace("he paragraph ", "<br/><br/> ");
+thenewtext=thenewtext.replace("nuevo párrafo ", "<br><br> ");
+thenewtext=thenewtext.replace("nuovo paragrafo ", "<br><br> ");
+thenewtext=thenewtext.replace("novo parágrafo ", "<br><br> ");
+thenewtext=thenewtext.replace("nuwe paragraaf ", "<br><br> ");
+thenewtext=thenewtext.replace("paragraf baru ", "<br><br> ");
+thenewtext=thenewtext.replace("nou paràgraf ", "<br><br> ");
+thenewtext=thenewtext.replace("nieuwe paragraaf ", "<br><br> ");
+thenewtext=thenewtext.replace("nouveau paragraphe ", "<br><br> ");
+thenewtext=thenewtext.replace("nieuwe paragraaf‎ google‎ lugo trabajo ", "<br><br> ");
+thenewtext=thenewtext.replace("nowy akapit ", "<br><br> ");
+thenewtext=thenewtext.replace("mír nua ", "<br><br> ");
+thenewtext=thenewtext.replace("neuer Absatz ", "<br><br> ");
+thenewtext=thenewtext.replace("novi odlomak ", "<br><br> ");
+thenewtext=thenewtext.replace("nový odstavec ", "<br><br> ");
+thenewtext=thenewtext.replace("paukū hou ", "<br><br> ");
+thenewtext=thenewtext.replace("új bekezdés ", "<br><br> ");
+thenewtext=thenewtext.replace("nyt afsnit ", "<br><br> ");
+thenewtext=thenewtext.replace("novi paragraf ", "<br><br> ");
+thenewtext=thenewtext.replace("paragrafo berria ", "<br><br> ");
+thenewtext=thenewtext.replace("nueva línea ", "<br> ");
+thenewtext=thenewtext.replace("nuova linea ", "<br> ");
+thenewtext=thenewtext.replace("nova linha ", "<br> ");
+thenewtext=thenewtext.replace("nuwe lyn ", "<br> ");
+thenewtext=thenewtext.replace("garis baru ", "<br> ");
+thenewtext=thenewtext.replace("nova línia ", "<br> ");
+thenewtext=thenewtext.replace("nieuwe lijn ", "<br> ");
+thenewtext=thenewtext.replace("nouvelle ligne ", "<br> ");
+thenewtext=thenewtext.replace("Nowa linia ", "<br> ");
+thenewtext=thenewtext.replace("líne nua ", "<br> ");
+thenewtext=thenewtext.replace("Neue Zeile ", "<br> ");
+thenewtext=thenewtext.replace("nova linija ", "<br> ");
+thenewtext=thenewtext.replace("nový řádek ", "<br> ");
+thenewtext=thenewtext.replace("laina hou ", "<br> ");
+thenewtext=thenewtext.replace("új sor ", "<br> ");
+thenewtext=thenewtext.replace("ny linje ", "<br> ");
+thenewtext=thenewtext.replace("linea berria ", "<br> ");
+thenewtext=thenewtext.replace(" parada completa ", ". ");
+thenewtext=thenewtext.replace(" punto ", ". ");
+thenewtext=thenewtext.replace(" ponto final ", ". ");
+thenewtext=thenewtext.replace(" punt ", ". ");
+thenewtext=thenewtext.replace(" titik ", ". ");
+thenewtext=thenewtext.replace(" arrêt complet ", ". ");
+thenewtext=thenewtext.replace(" kropka ", ". ");
+thenewtext=thenewtext.replace(" lánstad ", ". ");
+thenewtext=thenewtext.replace(" Punkt ", ". ");
+thenewtext=thenewtext.replace(" točka ", ". ");
+thenewtext=thenewtext.replace(" tečka ", ". ");
+thenewtext=thenewtext.replace(" kū piha ", ". ");
+thenewtext=thenewtext.replace(" pont ", ". ");
+thenewtext=thenewtext.replace(" fuldt stop ", ". ");
+thenewtext=thenewtext.replace(" tačka ", ". ");
+thenewtext=thenewtext.replace(" puntua ", ". ");
+thenewtext=thenewtext.replace(" signo de interrogación ", "? ");
+thenewtext=thenewtext.replace(" punto interrogativo ", "? ");
+thenewtext=thenewtext.replace(" ponto de interrogação ", "? ");
+thenewtext=thenewtext.replace(" vraagteken ", "? ");
+thenewtext=thenewtext.replace(" tanda tanya ", "? ");
+thenewtext=thenewtext.replace(" signe d'interrogació ", "? ");
+thenewtext=thenewtext.replace(" point d'interrogation ", "? ");
+thenewtext=thenewtext.replace(" znak zapytania ", "? ");
+thenewtext=thenewtext.replace(" comhartha ceiste ", "? ");
+thenewtext=thenewtext.replace(" Fragezeichen ", "? ");
+thenewtext=thenewtext.replace(" upitnik ", "? ");
+thenewtext=thenewtext.replace(" otazník ", "? ");
+thenewtext=thenewtext.replace(" māka nīnau ", "? ");
+thenewtext=thenewtext.replace(" kérdőjel ", "? ");
+thenewtext=thenewtext.replace(" spørgsmålstegn ", "? ");
+thenewtext=thenewtext.replace(" galdera ikurra ", "? ");
+thenewtext=thenewtext.replace(" coma ", ", ");
+thenewtext=thenewtext.replace(" virgola ", ", ");
+thenewtext=thenewtext.replace(" vírgula ", ", ");
+thenewtext=thenewtext.replace(" komma ", ", ");
+thenewtext=thenewtext.replace(" koma ", ", ");
+thenewtext=thenewtext.replace(" virgule ", ", ");
+thenewtext=thenewtext.replace(" przecinek ", ", ");
+thenewtext=thenewtext.replace(" camóg ", ", ");
+thenewtext=thenewtext.replace(" Komma ", ", ");
+thenewtext=thenewtext.replace(" zarez ", ", ");
+thenewtext=thenewtext.replace(" čárka ", ", ");
+thenewtext=thenewtext.replace(" vessző ", ", ");
+thenewtext=thenewtext.replace(" signo de exclamación ", "! ");
+thenewtext=thenewtext.replace(" punto esclamativo ", "! ");
+thenewtext=thenewtext.replace(" ponto de exclamação ", "! ");
+thenewtext=thenewtext.replace(" uitroepteken ", "! ");
+thenewtext=thenewtext.replace(" tanda seru ", "! ");
+thenewtext=thenewtext.replace(" signe d'exclamació ", "! ");
+thenewtext=thenewtext.replace(" point d'exclamation ", "! ");
+thenewtext=thenewtext.replace(" wykrzyknik ", "! ");
+thenewtext=thenewtext.replace(" comhartha uaillbhreasa ", "! ");
+thenewtext=thenewtext.replace(" Ausrufezeichen ", "! ");
+thenewtext=thenewtext.replace(" uskličnik ", "! ");
+thenewtext=thenewtext.replace(" vykřičník ", "! ");
+thenewtext=thenewtext.replace(" ʻōlelo hoʻōho ", "! ");
+thenewtext=thenewtext.replace(" felkiáltójel ", "! ");
+thenewtext=thenewtext.replace(" udråbstegn ", "! ");
+thenewtext=thenewtext.replace(" uzvičnik ", "! ");
+thenewtext=thenewtext.replace(" harridura ikurra ", "! ");
+thenewtext=thenewtext.replace("Nuevo párrafo ", "<br><br> ");
+thenewtext=thenewtext.replace("Nuovo paragrafo ", "<br><br> ");
+thenewtext=thenewtext.replace("Novo parágrafo ", "<br><br> ");
+thenewtext=thenewtext.replace("Nuwe paragraaf ", "<br><br> ");
+thenewtext=thenewtext.replace("Paragraf baru ", "<br><br> ");
+thenewtext=thenewtext.replace("Nou paràgraf ", "<br><br> ");
+thenewtext=thenewtext.replace("Nieuwe paragraaf ", "<br><br> ");
+thenewtext=thenewtext.replace("Nouveau paragraphe ", "<br><br> ");
+thenewtext=thenewtext.replace("Nieuwe paragraaf‎ google‎ lugo trabajo ", "<br><br> ");
+thenewtext=thenewtext.replace("Nowy akapit ", "<br><br> ");
+thenewtext=thenewtext.replace("Mír nua ", "<br><br> ");
+thenewtext=thenewtext.replace("Neuer absatz ", "<br><br> ");
+thenewtext=thenewtext.replace("Novi odlomak ", "<br><br> ");
+thenewtext=thenewtext.replace("Nový odstavec ", "<br><br> ");
+thenewtext=thenewtext.replace("Paukū hou ", "<br><br> ");
+thenewtext=thenewtext.replace("Új bekezdés ", "<br><br> ");
+thenewtext=thenewtext.replace("Nyt afsnit ", "<br><br> ");
+thenewtext=thenewtext.replace("Novi paragraf ", "<br><br> ");
+thenewtext=thenewtext.replace("Paragrafo berria ", "<br><br> ");
+thenewtext=thenewtext.replace("Nueva línea ", "<br> ");
+thenewtext=thenewtext.replace("Nuova linea ", "<br> ");
+thenewtext=thenewtext.replace("Nova linha ", "<br> ");
+thenewtext=thenewtext.replace("Nuwe lyn ", "<br> ");
+thenewtext=thenewtext.replace("Garis baru ", "<br> ");
+thenewtext=thenewtext.replace("Nova línia ", "<br> ");
+thenewtext=thenewtext.replace("Nieuwe lijn ", "<br> ");
+thenewtext=thenewtext.replace("Nouvelle ligne ", "<br> ");
+thenewtext=thenewtext.replace("Líne nua ", "<br> ");
+thenewtext=thenewtext.replace("Neue zeile ", "<br> ");
+thenewtext=thenewtext.replace("Nova linija ", "<br> ");
+thenewtext=thenewtext.replace("Nový řádek ", "<br> ");
+thenewtext=thenewtext.replace("Laina hou ", "<br> ");
+thenewtext=thenewtext.replace("Új sor ", "<br> ");
+thenewtext=thenewtext.replace("Ny linje ", "<br> ");
+thenewtext=thenewtext.replace("Linea berria ", "<br> ");
+thenewtext=thenewtext.replace(" Parada completa ", ". ");
+thenewtext=thenewtext.replace(" Punto ", ". ");
+thenewtext=thenewtext.replace(" Ponto final ", ". ");
+thenewtext=thenewtext.replace(" Punt ", ". ");
+thenewtext=thenewtext.replace(" Titik ", ". ");
+thenewtext=thenewtext.replace(" Arrêt complet ", ". ");
+thenewtext=thenewtext.replace(" Kropka ", ". ");
+thenewtext=thenewtext.replace(" Lánstad ", ". ");
+thenewtext=thenewtext.replace(" Točka ", ". ");
+thenewtext=thenewtext.replace(" Tečka ", ". ");
+thenewtext=thenewtext.replace(" Kū piha ", ". ");
+thenewtext=thenewtext.replace(" Pont ", ". ");
+thenewtext=thenewtext.replace(" Fuldt stop ", ". ");
+thenewtext=thenewtext.replace(" Tačka ", ". ");
+thenewtext=thenewtext.replace(" Puntua ", ". ");
+thenewtext=thenewtext.replace(" Signo de interrogación ", "? ");
+thenewtext=thenewtext.replace(" Punto interrogativo ", "? ");
+thenewtext=thenewtext.replace(" Ponto de interrogação ", "? ");
+thenewtext=thenewtext.replace(" Vraagteken ", "? ");
+thenewtext=thenewtext.replace(" Tanda tanya ", "? ");
+thenewtext=thenewtext.replace(" Signe d'interrogació ", "? ");
+thenewtext=thenewtext.replace(" Point d'interrogation ", "? ");
+thenewtext=thenewtext.replace(" Znak zapytania ", "? ");
+thenewtext=thenewtext.replace(" Comhartha ceiste ", "? ");
+thenewtext=thenewtext.replace(" Upitnik ", "? ");
+thenewtext=thenewtext.replace(" Otazník ", "? ");
+thenewtext=thenewtext.replace(" Māka nīnau ", "? ");
+thenewtext=thenewtext.replace(" Kérdőjel ", "? ");
+thenewtext=thenewtext.replace(" Spørgsmålstegn ", "? ");
+thenewtext=thenewtext.replace(" Galdera ikurra ", "? ");
+thenewtext=thenewtext.replace(" Coma ", ", ");
+thenewtext=thenewtext.replace(" Virgola ", ", ");
+thenewtext=thenewtext.replace(" Vírgula ", ", ");
+thenewtext=thenewtext.replace(" Koma ", ", ");
+thenewtext=thenewtext.replace(" Virgule ", ", ");
+thenewtext=thenewtext.replace(" Przecinek ", ", ");
+thenewtext=thenewtext.replace(" Camóg ", ", ");
+thenewtext=thenewtext.replace(" Zarez ", ", ");
+thenewtext=thenewtext.replace(" Čárka ", ", ");
+thenewtext=thenewtext.replace(" Vessző ", ", ");
+thenewtext=thenewtext.replace(" Signo de exclamación ", "! ");
+thenewtext=thenewtext.replace(" Punto esclamativo ", "! ");
+thenewtext=thenewtext.replace(" Ponto de exclamação ", "! ");
+thenewtext=thenewtext.replace(" Uitroepteken ", "! ");
+thenewtext=thenewtext.replace(" Tanda seru ", "! ");
+thenewtext=thenewtext.replace(" Signe d'exclamació ", "! ");
+thenewtext=thenewtext.replace(" Point d'exclamation ", "! ");
+thenewtext=thenewtext.replace(" Wykrzyknik ", "! ");
+thenewtext=thenewtext.replace(" Comhartha uaillbhreasa ", "! ");
+thenewtext=thenewtext.replace(" Uskličnik ", "! ");
+thenewtext=thenewtext.replace(" Vykřičník ", "! ");
+thenewtext=thenewtext.replace(" Felkiáltójel ", "! ");
+thenewtext=thenewtext.replace(" Udråbstegn ", "! ");
+thenewtext=thenewtext.replace(" Uzvičnik ", "! ");
+thenewtext=thenewtext.replace(" Harridura ikurra ", "! ");
+thenewtext=thenewtext.replace("Uline ", "<br> ");
+
+
+
+return thenewtext;
+}
+
+
+var first_char = /\S/;
+
+function capitalize(s) {  
+    return s.replace(first_char, function(m) { return m.toUpperCase(); });
+}
+
+
+function clearfunction() {  
+if (recognizing) {    
+togglerecordingenabled();
+recognition.stop();
+setTimeout(function(){ 
+ document.getElementById('final_span').innerHTML = "";
+  document.getElementById('interim_span').innerHTML = "";
+startButton(event);
+}, 150);
+} else {
+clearBox('final_span');
+}
+}
+
+
+
+function stopandclear() {  
+if (recognizing) {    
+togglerecordingenabled();
+recognition.stop();
+setTimeout(function(){ 
+ document.getElementById('final_span').innerHTML = "";
+  document.getElementById('interim_span').innerHTML = "";
+}, 150);
+} else {
+clearBox('final_span');
+}
+}
+
+
+
+function togglerecordingenabled() {
+if (window.recordingenabled == false) {
+window.recordingenabled = true;
+} else {
+window.recordingenabled = false;  
+}
+}
+
+function startButton(event) {  
+  window.recordingenabled = true;
+
+    if (recognizing) {  
+      recognition.stop(); 
+      window.recordingenabled = false;   
+       swaptitle('LilySpeech Dictation is Off');  
+               jQuery('#results').click();  
+      return;  
+    }  
+    final_transcript = $('#final_span').html();  
+    recognition.lang = select_dialect.value;  
+     
+    swaptitle('LilySpeech Dictation is Listening');  
+    ignore_onend = false;  
+   // final_span.innerHTML = '';  
+    interim_span.innerHTML = '';  
+    start_img.src = 'https://lilyspeech.com/wp-content/plugins/LilySpeech/1slash.gif';  
+   // showInfo('info_allow');  
+    recognition.start();  
+    showButtons('none');  
+    start_timestamp = event.timeStamp;
+}
+
+
+
+
+
+
+
+
+function stopLily(event) {  
+      if (recognizing) {  
+      recognition.stop(); 
+      window.recordingenabled = false;   
+       swaptitle('LilySpeech Dictation is Off');  
+               jQuery('#results').click();  
+      return;  
+  }
+}
+
+
+
+function startLily(event) {  
+    if (!recognizing) {  
+  window.recordingenabled = true;
+    final_transcript = $('#final_span').html();  
+    recognition.lang = select_dialect.value;  
+     
+    swaptitle('LilySpeech Dictation is Listening');  
+    ignore_onend = false;  
+   // final_span.innerHTML = '';  
+    interim_span.innerHTML = '';  
+    start_img.src = 'https://lilyspeech.com/wp-content/plugins/LilySpeech/1slash.gif';  
+   // showInfo('info_allow');  
+    recognition.start();  
+    showButtons('none');  
+    start_timestamp = event.timeStamp;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+function showInfo(s) {  
+    if (s) {  
+      for (var child = info.firstChild; child; child = child.nextSibling) {  
+        if (child.style) {  
+          child.style.display = child.id == s ? 'inline' : 'none';  
+        }  
+      }  
+      info.style.visibility = 'visible';  
+    } else {  
+      info.style.visibility = 'hidden';  
+    }
+}
+
+var current_style;
+function showButtons(style) {  
+    if (style == current_style) {  
+      return;  
+    }  
+    current_style = style;  
+   
+}
+
+
+
+
+
+/*
+$(function(){
+
+    setTimeout(function(){
+        $('#hideall').fadeIn('slow');
+    },500);
+
+});
+
+
+
+
+$(function(){
+
+    setTimeout(function(){
+        $('#hideall').fadeOut('slow');
+         $('#hideall2').fadeOut('slow');
+    },120000);
+
+});
+*/
+
+
+//document.title = 'LilySpeech Dictation';
+
+</script>
+
+
+    <div class="col-xs-12"><div id="key">Status: Free</div></div>
+
+
+<linkclump-plus><span style="margin: 0px auto; border: 0px dotted red; position: absolute; z-index: 2147483646; visibility: hidden;"></span><span style="z-index: 2147483647; display: inline-block; visibility: hidden; position: absolute; top: 0px; left: 0px; line-height: 16px; font-size: 16px; font-weight: 400; color: black; background-color: transparent; padding: 8px; border-radius: 8px; border: 4px double transparent;"></span></linkclump-plus></body></html>
